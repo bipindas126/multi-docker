@@ -15,7 +15,7 @@ after_success:
   - docker build -t bipindas/multi-worker ./worker
 # login to docker cli
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-# take images and push to docker hub
+# take images and push to docker hub -- test
   - docker push bipindas/multi-client
   - docker push bipindas/multi-nginx
   - docker push bipindas/multi-server
