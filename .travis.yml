@@ -3,23 +3,23 @@ services:
   - docker
 
 before_install:
-  - docker build -t bipindas/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t bipindasdocker/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true bipindas/react-test npm run test
+  - docker run -e CI=true bipindasdocker/react-test npm run test
 
 after_success:
-  - docker build -t bipindas/multi-client ./client
-  - docker build -t bipindas/multi-nginx ./nginx
-  - docker build -t bipindas/multi-server ./server  
-  - docker build -t bipindas/multi-worker ./worker
+  - docker build -t bipindasdocker/multi-client ./client
+  - docker build -t bipindasdocker/multi-nginx ./nginx
+  - docker build -t bipindasdocker/multi-server ./server  
+  - docker build -t bipindasdocker/multi-worker ./worker
 # login to docker cli
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 # take images and push to docker hub -- test
-  - docker push bipindas/multi-client
-  - docker push bipindas/multi-nginx
-  - docker push bipindas/multi-server
-  - docker push bipindas/multi-worker
+  - docker push bipindasdocker/multi-client
+  - docker push bipindasdocker/multi-nginx
+  - docker push bipindasdocker/multi-server
+  - docker push bipindasdocker/multi-worker
 
 # deploy: 
 #   provider: elasticbeanstalk
